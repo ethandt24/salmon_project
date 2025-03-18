@@ -39,7 +39,7 @@ beta = 18.0;
 % - survival ratio of mature larvae
 gamma = 1.0;
 
-% Equilibrium calculation
+% Fixed point calculation
 x_star = log(gamma * beta) / alpha * (t_e - t_0)
 
 % Simulation over N cycles
