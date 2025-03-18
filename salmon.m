@@ -48,7 +48,7 @@ x_star = log(gamma * beta) / alpha * (t_e - t_0)
 x_0 = 0.01;
 
 % N - number of cycles
-N = 100;
+N = 50;
 
 % Result array - initially all 0
 % Set result of cycle n at x(n)
@@ -67,4 +67,4 @@ figure;
 plot(0: N, x, 'bo-');
 xlabel("Cycle (n)");
 ylabel("Salmon population (hundreds of million)");
-title(sprintf("Salmon population over N=50 cycles (alpha = %.2f, beta = %.2f, gamma = %.2f)", alpha, beta, gamma));
+title(sprintf("Salmon population over N=%d cycles (alpha = %.2f, beta = %.2f, gamma = %.2f)", N, alpha, beta, gamma));
