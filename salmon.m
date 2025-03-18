@@ -41,7 +41,7 @@ gamma = 1;
 gamma1 = 1.5;
 gamma2 = 0.5;
 
-% Equilibrium calculation
+% Fixed point calculation
 x_star = log(gamma * beta) / alpha * (t_e - t_0)
 
 % Compute the derivative f'(x) at x*
@@ -64,6 +64,7 @@ x_0 = 0.01;
 
 
 % N - number of cycles
+N = 50;
 N = 50;
 
 % Result array - initially all 0
@@ -90,6 +91,21 @@ plot(0: N, x, 'bo-');
 xlabel("Cycle (n)");
 ylabel("Salmon population (hundreds of million)");
 title(sprintf("Salmon population over N=50 cycles (alpha = %.2f, beta = %.2f, gamma = %.2f)", alpha, beta, gamma));
+
+
+% Plot all x_n for range 1:N
+figure;
+plot(0: N, x1, 'bo-');
+hold on
+
+% Plot all x_n for range 1:N
+plot(0: N, x2, 'bo-');
+xlabel("Cycle (n)");
+ylabel("Salmon population (hundreds of million)");
+title(sprintf("Salmon population over N=50 cycles (alpha = %.2f, beta = %.2f, gamma = %.2f)", alpha, beta, gamma))
+hold off
+
+legend("survival rate: 1.5", "survival rate: 0.5")
 
 
 % Plot all x_n for range 1:N
