@@ -90,7 +90,7 @@ figure;
 plot(0: N, x, 'bo-');
 xlabel("Cycle (n)");
 ylabel("Salmon population (hundreds of million)");
-title(sprintf("Salmon population over N=50 cycles (alpha = %.2f, beta = %.2f, gamma = %.2f)", alpha, beta, gamma));
+title(sprintf("Salmon population over N=%d cycles (alpha = %.2f, beta = %.2f, gamma = %.2f)", alpha, beta, gamma));
 
 
 % Plot all x_n for range 1:N
@@ -102,22 +102,7 @@ hold on
 plot(0: N, x2, 'bo-');
 xlabel("Cycle (n)");
 ylabel("Salmon population (hundreds of million)");
-title(sprintf("Salmon population over N=50 cycles (alpha = %.2f, beta = %.2f, gamma = %.2f)", alpha, beta, gamma))
-hold off
-
-legend("survival rate: 1.5", "survival rate: 0.5")
-
-
-% Plot all x_n for range 1:N
-figure;
-plot(0: N, x1, 'bo-');
-hold on
-
-% Plot all x_n for range 1:N
-plot(0: N, x2, 'bo-');
-xlabel("Cycle (n)");
-ylabel("Salmon population (hundreds of million)");
-title(sprintf("Salmon population over N=50 cycles (alpha = %.2f, beta = %.2f, gamma = %.2f)", alpha, beta, gamma))
+title(sprintf("Salmon population over N=%d cycles (alpha = %.2f, beta = %.2f, gamma = %.2f)", alpha, beta, gamma))
 hold off
 
 legend("survival rate: 1.5", "survival rate: 0.5")
