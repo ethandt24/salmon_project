@@ -61,8 +61,8 @@ for n=1: N
     a_upper = 10;   % upper bound of A
     A(n) = a_lower + (a_upper - a_lower) * rand();
 
-    b_lower = 1;    % lower bound of B
-    b_upper = 10;   % upper bound of B
+    b_lower = 3;    % lower bound of B
+    b_upper = 20;   % upper bound of B
     B(n) = b_lower + (b_upper - b_lower) * rand();
 
     x(n+1) = B(n) * x(n) * exp(x(n) * -A(n));
