@@ -47,6 +47,8 @@ N = 30;
 % Result array - initially all 0
 % Set result of cycle n at x(n)
 x = zeros(N, 1);
+A = zeros(N, 1);
+B = zeros(N, 1);
 
 x(1) = x_0;
 
@@ -55,20 +57,15 @@ for n=1: N
     % a) 1 < A < 10 
     % b) 3 < B < 20
     
-    disp("-------")
-
     a_lower = 1;    % lower bound of A
     a_upper = 10;   % upper bound of A
-    A = a_lower + (a_upper - a_lower) * rand()
+    A(n) = a_lower + (a_upper - a_lower) * rand();
 
     b_lower = 1;    % lower bound of B
     b_upper = 10;   % upper bound of B
-    B = b_lower + (b_upper - b_lower) * rand()
+    B(n) = b_lower + (b_upper - b_lower) * rand();
 
-    disp("res")
-    disp(B * x(n) * exp(x(n) * -A))
-
-    x(n+1) = B * x(n) * exp(x(n) * -A);
+    x(n+1) = B(n) * x(n) * exp(x(n) * -A(n));
 end
 
 % Plot all x_n for range 1:N
@@ -78,6 +75,17 @@ xlabel("Cycle (n)");
 ylabel("Salmon population (hundreds of million)");
 grid("on");
 title(sprintf("Salmon population over N=%d cycles", N));
+
+figure;
+plot(0: N-1, A, 'bo-');
+hold on;
+plot(0: N-1, B, 'ro-');
+hold off;
+
+xlabel("Cycle (n)");
+ylabel("A & B Values");
+grid("on");
+title(sprintf("Values of A & B over N=%d cycles", N));
 
 
 
