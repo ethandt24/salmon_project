@@ -85,7 +85,8 @@ hold off;
 xlabel("Cycle (n)");
 ylabel("A & B Values");
 grid("on");
-title(sprintf("Values of A & B over N=%d cycles", N));
+title(sprintf("Values of A & B over N=%d cycles", N))
+legend({'Alpha', 'Beta'});
 
 
 
