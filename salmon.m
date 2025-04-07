@@ -31,8 +31,8 @@ t_e = 1.0;
 
 % Proportionality constant for y(n)
 % - reproduction rate
-% beta = 2.0;
-beta = 18.0;
+beta = 2.0;
+% beta = 18.0;
 
 % Proportionality constant 
 % - survival ratio of mature larvae
@@ -41,7 +41,6 @@ gamma1 = 1.5;
 gamma2 = 0.5;
 
 % Fixed point calculation
->>>>>>> d0d54464dfda44273aa5396fc4837908373e78d7
 x_star = log(gamma * beta) / alpha * (t_e - t_0)
 
 % Simulation over N cycles
@@ -83,15 +82,15 @@ title(sprintf("Salmon population over N=%d cycles (alpha = %.2f, beta = %.2f, ga
 
 
 % Plot all x_n for range 1:N
-figure;
-plot(0: N, x1, 'bo-');
-hold on
+% figure;
+% plot(0: N, x1, 'bo-');
+% hold on
 
-% Plot all x_n for range 1:N
-plot(0: N, x2, 'ro-');
-xlabel("Cycle (n)");
-ylabel("Salmon population (hundreds of million)");
-title(sprintf("Salmon population over N=%d cycles (alpha = %.2f, beta = %.2f, gamma = %.2f)", alpha, beta, gamma))
-hold off
+% % Plot all x_n for range 1:N
+% plot(0: N, x2, 'ro-');
+% xlabel("Cycle (n)");
+% ylabel("Salmon population (hundreds of million)");
+% title(sprintf("Salmon population over N=%d cycles (alpha = %.2f, beta = %.2f, gamma = %.2f)", alpha, beta, gamma))
+% hold off
 
 legend("gamma: 1.5", "gamma: 0.5")
