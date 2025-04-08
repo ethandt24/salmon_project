@@ -53,22 +53,33 @@ x_0 = 0.01;
 N = 30;
 
 % Result array - initially all 0
-% Set result of cycle n at x(n)
+% Low A, Low B
 x = zeros(N, 1);
-% Results with higher gamma (gamme = 1.5)
+% High A, Low B
 x1 = zeros(N, 1);
-% Results with lower gamma (gamme = 0.5)
+% Low A, High B
 x2 = zeros(N, 1);
+% High A, High B
+x3 = zeros(N, 1);
 
 % Init initial result for 1st cycle
 x(1) = x_0;
 x1(1) = x_0;
 x2(1) = x_0;
+x3(1) = x_0;
+
+A_low = 5;
+B_low = 1;
+A_mid = 5;
+B_mid = 2;
+A_high = 10;
+B_high = 15;
 
 for n=1: N
-    x(n+1) = gamma * beta * x(n) * exp(-alpha * x(n) * (t_e - t_0));
-    x1(n+1) = gamma1 * beta * x1(n) * exp(-alpha * x1(n) * (t_e - t_0));
-    x2(n+1) = gamma2 * beta * x2(n) * exp(-alpha * x2(n) * (t_e - t_0));
+    x(n+1) = B_low * x(n) * exp(x(n) * -A_low);
+    x1(n+1) = B_low * x(n) * exp(x1(n) * -A_high);
+    x2(n+1) = B_high * x(n) * exp(x2(n) * -A_low);
+    x3(n+1) = B_high * x(n) * exp(x3(n) * -A_high);
 end
 
 
@@ -78,19 +89,27 @@ plot(0: N, x, 'bo-');
 xlabel("Cycle (n)");
 ylabel("Salmon population (hundreds of million)");
 grid("on");
-title(sprintf("Salmon population over N=%d cycles (alpha = %.2f, beta = %.2f, gamma = %.2f)",N ,alpha, beta, gamma));
-
+title(sprintf("Salmon population over N=%d cycles (A = %.2f, B = %.2f)",N ,A_low, B_low));
 
 % Plot all x_n for range 1:N
-% figure;
-% plot(0: N, x1, 'bo-');
-% hold on
+figure;
+plot(0: N, x1, 'mo-');
+xlabel("Cycle (n)");
+ylabel("Salmon population (hundreds of million)");
+grid("on");
+title(sprintf("Salmon population over N=%d cycles (A = %.2f, B = %.2f)",N ,A_high, B_low));
 
 % % Plot all x_n for range 1:N
-% plot(0: N, x2, 'ro-');
-% xlabel("Cycle (n)");
-% ylabel("Salmon population (hundreds of million)");
-% title(sprintf("Salmon population over N=%d cycles (alpha = %.2f, beta = %.2f, gamma = %.2f)", alpha, beta, gamma))
-% hold off
+figure;
+plot(0: N, x2, 'ro-');
+xlabel("Cycle (n)");
+ylabel("Salmon population (hundreds of million)");
+grid("on");
+title(sprintf("Salmon population over N=%d cycles (A = %.2f, B = %.2f)",N ,A_low, B_high));
 
-legend("gamma: 1.5", "gamma: 0.5")
+figure;
+plot(0: N, x3, 'go-');
+xlabel("Cycle (n)");
+ylabel("Salmon population (hundreds of million)");
+grid("on");
+title(sprintf("Salmon population over N=%d cycles (A = %.2f, B = %.2f)",N ,A_high, B_high));

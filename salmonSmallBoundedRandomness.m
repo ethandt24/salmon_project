@@ -1,3 +1,4 @@
+
 clear; clc; close all;
 
 % We introduce some randomness into our parameters alpha, beta, and gamma to model the variability of external factors such as 
@@ -48,14 +49,13 @@ N = 30;
 % Set result of cycle n at x(n)
 x = zeros(N, 1);
 
-% alpha = 7;
-% beta = 2;
-% gamma = 1;
-% t0 = 0.0;
-% te = 1.0;
-
 A_low = 2;
 B_low = 2;
+% A_mid = 5;
+% B_mid = 2;
+% A_high = 8;
+% B_high = 18;
+
 
 A = zeros(N, 1);
 A(1) = A_low;
@@ -79,20 +79,20 @@ for n=1: N
     rand_val_A = rand();
     
     if rand_val_A > 0.5
-        % Perturb prev A val by +10%
-        A(n+1) = 1.1 * A(n);
+        % Perturb prev A val by +5%
+        A(n+1) = 1.05 * A(n);
     else
-        % Perturb prev A val by -10%
-        A(n+1) = 0.9 * A(n);
+        % Perturb prev A val by -5%
+        A(n+1) = 0.95 * A(n);
     end
 
     rand_val_B = rand()
     if rand_val_B > 0.5
-        % Perturb prev B val by +10%
-        B(n+1) = 1.1 * B(n);
+        % Perturb prev B val by +5%
+        B(n+1) = 1.05 * B(n);
     else
-        % Perturb prev B val by +10%
-        B(n+1) = 0.9 * B(n);
+        % Perturb prev B val by +5%
+        B(n+1) = 0.95 * B(n);
     end
 end
 
@@ -103,6 +103,7 @@ xlabel("Cycle (n)");
 ylabel("Salmon population (hundreds of million)");
 grid("on");
 title(sprintf("Salmon population over N=%d cycles (A_0 = %.2f, B_0 = %.2f)", N, A(1), B(1)));
+
 figure;
 plot(0: N, A, 'bo-');
 hold on;
@@ -114,6 +115,7 @@ ylabel("A & B Values");
 grid("on");
 title(sprintf("Values of A & B over N=%d cycles", N))
 legend({'A', 'B'});
+
 
 
 
