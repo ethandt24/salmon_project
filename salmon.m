@@ -13,7 +13,7 @@ clear; clc; close all;
 % - larvae decay due to cannabilism
 % alpha = 1.5;
 alpha = 7;
-t_0 = 0.0
+t_0 = 0.0;
 t_e = 1.0;
 
 
@@ -41,7 +41,7 @@ gamma1 = 1.5;
 gamma2 = 0.5;
 
 % Fixed point calculation
-x_star = log(gamma * beta) / alpha * (t_e - t_0)
+% x_star = log(B) /  A * (t_e - t_0)
 
 % Simulation over N cycles
 
@@ -68,12 +68,29 @@ x1(1) = x_0;
 x2(1) = x_0;
 x3(1) = x_0;
 
-A_low = 5;
+A_low = 8;
 B_low = 1;
 A_mid = 5;
 B_mid = 2;
 A_high = 10;
 B_high = 15;
+
+% Fixed point function
+fixed_point = @(B, A) [0, log(B)/A];
+% model = @(n) B * n * exp(n * -A);
+% fixed_point_equation = @(n) n - model(n);
+% fixed_point = fzero(fixed_point_equation, 0);
+% disp(['Fixed Point: ', num2str(fixed_point)]);
+
+x_fixed1 = fixed_point(B_low, A_low);   % [0, ln(B_low)/A_low]
+x_fixed2 = fixed_point(B_low, A_high);
+x_fixed3 = fixed_point(B_high, A_low);
+x_fixed4 = fixed_point(B_high, A_high);
+
+disp(['Fixed points for B_low, A_low: ', num2str(x_fixed1)]);
+disp(['Fixed points for B_low, A_high: ', num2str(x_fixed2)]);
+disp(['Fixed points for B_high, A_low: ', num2str(x_fixed3)]);
+disp(['Fixed points for B_high, A_high: ', num2str(x_fixed4)]);
 
 for n=1: N
     x(n+1) = B_low * x(n) * exp(x(n) * -A_low);
@@ -85,7 +102,7 @@ end
 
 % Plot all x_n for range 1:N
 figure;
-plot(0: N, x, 'bo-');
+plot(0: N, x, 'ro-');
 xlabel("Cycle (n)");
 ylabel("Salmon population (hundreds of million)");
 grid("on");
